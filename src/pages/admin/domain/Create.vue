@@ -34,7 +34,6 @@ const form = ref({
     login_url: null,
     login_username: null,
     login_password: null,
-    isHosting: null,
 })
 
 function addTag(newTag) {
@@ -67,6 +66,12 @@ const handleAdd = async () => {
     }
     formData.append('user', form.value.user ? form.value.user.id : null)
     formData.append('description', form.value.description)
+    formData.append('capacity', form.value.capacity)
+    formData.append('hosting_date', form.value.hosting_date)
+    formData.append('total_email', form.value.total_email)
+    formData.append('login_url', form.value.login_url)
+    formData.append('login_username', form.value.login_username)
+    formData.append('login_password', form.value.login_password)
 
     await store.addData(formData, setErrors, processing)
     processing.value = false
@@ -159,21 +164,7 @@ const handleAdd = async () => {
                             class="dark:text-typography-1 border rounded-lg dark:!border-typography-1 px-8 py-1 text-sm">
                             Hosting
                         </legend>
-                        <div class="flex items-center gap-3 pb-3">
-                            <input
-                                type="checkbox"
-                                id="isHosting"
-                                v-model="form.isHosting"
-                                class="rounded-lg" />
-                            <label
-                                for="isHosting"
-                                class="dark:text-typography-1"
-                                >Add Hosting</label
-                            >
-                        </div>
-                        <div
-                            class="grid grid-cols-2 gap-3"
-                            v-if="form.isHosting">
+                        <div class="grid grid-cols-2 gap-3">
                             <div class="flex flex-col gap-1">
                                 <label for="" class="dark:text-white text-sm"
                                     >Capacity</label

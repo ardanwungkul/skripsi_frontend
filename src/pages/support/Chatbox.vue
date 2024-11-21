@@ -73,7 +73,7 @@ async function fetchUser() {
     <SupportLayout title="Chat">
         <div class="w-full flex gap-3">
             <div
-                class="w-full max-w-xs bg-light-primary-1 dark:bg-dark-primary-2 rounded-lg shadow-lg p-5">
+                class="w-full max-w-xs bg-light-primary-1 dark:bg-dark-primary-2 rounded-lg shadow-lg p-5 space-y-5">
                 <div v-for="(user, index) in users" :key="index" class="w-full">
                     <input
                         class="peer hidden"

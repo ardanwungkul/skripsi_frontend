@@ -46,6 +46,13 @@ onBeforeMount(async () => {
         form.value.user = data.value.domain.user
         form.value.description = data.value.domain.description
 
+        form.value.capacity = data.value.domain.hosting.capacity
+        form.value.hosting_date = data.value.domain.hosting.hosting_date
+        form.value.total_email = data.value.domain.hosting.total_email
+        form.value.login_url = data.value.domain.hosting.login_url
+        form.value.login_username = data.value.domain.hosting.login_username
+        form.value.login_password = data.value.domain.hosting.login_password
+
         data.value.isLoading = false
     }
 })
@@ -80,6 +87,12 @@ const handleEdit = async () => {
     }
     formData.append('user', form.value.user ? form.value.user.id : null)
     formData.append('description', form.value.description)
+    formData.append('capacity', form.value.capacity)
+    formData.append('hosting_date', form.value.hosting_date)
+    formData.append('total_email', form.value.total_email)
+    formData.append('login_url', form.value.login_url)
+    formData.append('login_username', form.value.login_username)
+    formData.append('login_password', form.value.login_password)
 
     await store.editData(formData, setErrors, processing, id.value)
     processing.value = false
@@ -167,6 +180,69 @@ const handleEdit = async () => {
                             class="rounded-lg dark:bg-dark-primary-1 bg-light-primary-2 dark:border-typography-2 dark:text-white text-sm"
                             rows="5"></textarea>
                     </div>
+                    <fieldset
+                        class="border rounded-lg dark:!border-typography-1 p-5 col-span-2">
+                        <legend
+                            class="dark:text-typography-1 border rounded-lg dark:!border-typography-1 px-8 py-1 text-sm">
+                            Hosting
+                        </legend>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex flex-col gap-1">
+                                <label for="" class="dark:text-white text-sm"
+                                    >Capacity</label
+                                >
+                                <input
+                                    type="number"
+                                    v-model="form.capacity"
+                                    class="rounded-lg dark:bg-dark-primary-1 bg-light-primary-2 dark:border-typography-2 dark:text-white text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="" class="dark:text-white text-sm"
+                                    >Hosting Date</label
+                                >
+                                <input
+                                    type="date"
+                                    v-model="form.hosting_date"
+                                    class="rounded-lg dark:bg-dark-primary-1 bg-light-primary-2 dark:border-typography-2 dark:text-white text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="" class="dark:text-white text-sm"
+                                    >Total Email</label
+                                >
+                                <input
+                                    type="number"
+                                    v-model="form.total_email"
+                                    class="rounded-lg dark:bg-dark-primary-1 bg-light-primary-2 dark:border-typography-2 dark:text-white text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="" class="dark:text-white text-sm"
+                                    >Login Url</label
+                                >
+                                <input
+                                    type="text"
+                                    v-model="form.login_url"
+                                    class="rounded-lg dark:bg-dark-primary-1 bg-light-primary-2 dark:border-typography-2 dark:text-white text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="" class="dark:text-white text-sm"
+                                    >Login Username</label
+                                >
+                                <input
+                                    type="text"
+                                    v-model="form.login_username"
+                                    class="rounded-lg dark:bg-dark-primary-1 bg-light-primary-2 dark:border-typography-2 dark:text-white text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="" class="dark:text-white text-sm"
+                                    >Login Password</label
+                                >
+                                <input
+                                    type="text"
+                                    v-model="form.login_password"
+                                    class="rounded-lg dark:bg-dark-primary-1 bg-light-primary-2 dark:border-typography-2 dark:text-white text-sm" />
+                            </div>
+                        </div>
+                    </fieldset>
                     <div class="flex justify-end col-span-2">
                         <button
                             class="bg-secondary-3 px-5 min-w-24 py-1 rounded-lg text-white hover:bg-opacity-80 flex justify-center items-center gap-3">

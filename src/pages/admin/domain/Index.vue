@@ -89,6 +89,173 @@ watchEffect(() => {
                         <template v-slot:item.id="{ item }">
                             <div
                                 class="flex gap-3 items-center justify-center text-xs">
+                                <v-dialog max-width="500">
+                                    <template
+                                        v-slot:activator="{
+                                            props: activatorProps,
+                                        }">
+                                        <button v-bind="activatorProps">
+                                            <div
+                                                class="flex gap-2 items-center text-white bg-secondary-3 hover:bg-opacity-90 rounded-lg px-3 py-1 cursor-pointer">
+                                                <i class="fa-solid fa-eye"></i>
+                                                <p>Show</p>
+                                            </div>
+                                        </button>
+                                    </template>
+
+                                    <template v-slot:default="{ isActive }">
+                                        <v-card :title="item.domain_name">
+                                            <div class="px-6 space-y-4">
+                                                <fieldset
+                                                    class="border rounded-lg p-3 shadow-lg">
+                                                    <legend class="px-3">
+                                                        Domain Information
+                                                    </legend>
+                                                    <div class="text-sm">
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>Domain Name</p>
+                                                            <p>
+                                                                {{
+                                                                    item.domain_name
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>Start Date</p>
+                                                            <p>
+                                                                {{
+                                                                    item.start_date
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>Expired Date</p>
+                                                            <p>
+                                                                {{
+                                                                    item.expired_date
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>Vendor</p>
+                                                            <p>
+                                                                {{
+                                                                    item.vendor
+                                                                        ?.vendor_name
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>Owner</p>
+                                                            <p>
+                                                                {{
+                                                                    item.user
+                                                                        ?.name
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset
+                                                    class="border rounded-lg p-3 shadow-lg">
+                                                    <legend class="px-3">
+                                                        Hosting Information
+                                                    </legend>
+                                                    <div class="text-sm">
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>
+                                                                Hosting Capacity
+                                                            </p>
+                                                            <p>
+                                                                {{
+                                                                    item.hosting
+                                                                        ?.capacity !==
+                                                                    null
+                                                                        ? item
+                                                                              .hosting
+                                                                              ?.capacity +
+                                                                          ' GB'
+                                                                        : ''
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>Hosting Date</p>
+                                                            <p>
+                                                                {{
+                                                                    item.hosting
+                                                                        ?.hosting_date
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>Total Email</p>
+                                                            <p>
+                                                                {{
+                                                                    item.hosting
+                                                                        ?.total_email
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>Login URL</p>
+                                                            <p>
+                                                                {{
+                                                                    item.hosting
+                                                                        ?.login_url
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>
+                                                                Login Username
+                                                            </p>
+                                                            <p>
+                                                                {{
+                                                                    item.hosting
+                                                                        ?.login_username
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                        <div
+                                                            class="flex justify-between">
+                                                            <p>
+                                                                Login Password
+                                                            </p>
+                                                            <p>
+                                                                {{
+                                                                    item.hosting
+                                                                        ?.login_password
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+
+                                            <v-card-actions>
+                                                <v-spacer></v-spacer>
+                                                <button
+                                                    class="px-3 py-1 bg-secondary-3 text-typography-1 rounded-lg hover:bg-opacity-90"
+                                                    @click="
+                                                        isActive.value = false
+                                                    ">
+                                                    Close
+                                                </button>
+                                            </v-card-actions>
+                                        </v-card>
+                                    </template>
+                                </v-dialog>
                                 <router-link
                                     :to="{
                                         name: 'domain.edit',
